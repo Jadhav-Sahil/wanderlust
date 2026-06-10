@@ -1,0 +1,1793 @@
+/* ==========================================================================
+   Airbnb-Style Pure Card Layout (No Ratings, Hearts, or Taglines)
+   ========================================================================== */
+
+:root {
+    --text-main: #222222;
+    --transition-smooth: cubic-bezier(0.2, 0, 0, 1);
+    --font-stack: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Fluid responsive grid system container */
+.listings-grid {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 32px 24px;
+    padding: 24px;
+    font-family: var(--font-stack);
+}
+
+/* Responsive breakout breakpoints */
+@media (min-width: 550px) {
+    .listings-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 950px) {
+    .listings-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1200px) {
+    .listings-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Anchor block normalization */
+.listing-card-link {
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+}
+
+.listing-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Fixed aspect ratio structural framing */
+.listing-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 20 / 19;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #f7f7f7;
+    margin-bottom: 10px;
+}
+
+/* Isolated hardware-accelerated transformation scale on focus or hover */
+.listing-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s var(--transition-smooth);
+}
+
+.listing-card-link:hover .listing-image {
+    transform: scale(1.04);
+}
+
+/* Streamlined Typography Engine */
+.listing-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.listing-location {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.listing-price-container {
+    margin: 2px 0 0 0;
+    font-size: 15px;
+}
+
+.listing-price {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.listing-unit {
+    font-weight: 400;
+    color: var(--text-main);
+}
+
+/* navbar css */
+/* ==========================================================================
+   Wanderlust Premium Navigation Bar Architecture
+   ========================================================================== */
+
+:root {
+    --nav-height-desktop: 80px;
+    --nav-height-mobile: 64px;
+    --text-main: #222222;
+    --text-muted: #717171;
+    --brand-color: #ff385c;
+    /* Premium Airbnb Rose Pink */
+    --bg-surface: rgba(255, 255, 255, 0.98);
+    /* Slight opacity for high-end glass blending */
+    --transition-smooth: cubic-bezier(0.2, 0, 0, 1);
+    --font-stack: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Core Navigation Wrapper */
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height-desktop);
+    background-color: var(--bg-surface);
+    backdrop-filter: blur(20px);
+    /* Premium OS-style backdrop blur */
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    border-bottom: 1px solid #f7f7f7;
+    z-index: 1000;
+    /* Stays locked above image wrappers */
+    box-sizing: border-box;
+    font-family: var(--font-stack);
+}
+
+/* Brand Logo Typography */
+.navbar-logo a {
+    font-size: 22px;
+    font-weight: 800;
+    /* Dense, premium typeface weighting */
+    color: var(--brand-color);
+    text-decoration: none;
+    letter-spacing: -0.6px;
+    transition: opacity 0.2s var(--transition-smooth);
+}
+
+.navbar-logo a:hover {
+    opacity: 0.85;
+}
+
+/* Links Stack Flex Layout */
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* Tighter gaps for professional pill groups */
+}
+
+/* High-End Navigation Menu Links */
+.navbar-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 24px;
+    /* Perfectly round pill boundaries */
+    white-space: nowrap;
+    transition: background-color 0.15s var(--transition-smooth), color 0.15s var(--transition-smooth);
+}
+
+/* Clean, modern native background flash on hover */
+.navbar-links a:hover {
+    background-color: #f7f7f7;
+    color: #000000;
+}
+
+/* Primary Visual Hierarchy Action for "Add New Listing" */
+.navbar-links a[href="/listings/new"] {
+    border: 1px solid #dddddd;
+    background-color: transparent;
+    margin-left: 4px;
+}
+
+.navbar-links a[href="/listings/new"]:hover {
+    border-color: #000000;
+    background-color: transparent;
+}
+
+
+/* ==========================================================================
+   Responsive Architecture (Mobile & Tablet Breakpoints)
+   ========================================================================== */
+
+@media (max-width: 743px) {
+    .navbar {
+        height: var(--nav-height-mobile);
+        padding: 0 24px;
+    }
+
+    .navbar-logo a {
+        font-size: 20px;
+    }
+
+    /* Scales sizing down for smaller devices cleanly */
+    .navbar-links a {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 550px) {
+
+    /* Hide lower priority links on ultra-small mobile screens to maintain layout beauty */
+    .navbar-links a[href="/"] {
+        display: none;
+    }
+
+    .navbar-links {
+        gap: 4px;
+    }
+}
+
+
+
+
+
+
+/* 
+footer for the website */
+
+/* ==========================================================================
+   Wanderlust Minimalist Premium Footer Architecture
+   ========================================================================== */
+
+:root {
+    --text-main: #222222;
+    --text-muted: #717171;
+    --bg-footer: #ffffff;
+    --transition-smooth: cubic-bezier(0.2, 0, 0, 1);
+    --font-stack: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Master Footer Block */
+.footer {
+    width: 100%;
+    background-color: var(--bg-footer);
+    border-top: 1px solid #ebebeb;
+    /* Crisp, ultra-thin line matching Airbnb layout */
+    padding: 24px 40px;
+    box-sizing: border-box;
+    font-family: var(--font-stack);
+    margin-top: auto;
+    /* Pushes footer to bottom on low-content pages */
+}
+
+/* Structural Layout Inner Wrapper */
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+/* 1. Brand Component Layout */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+}
+
+.footer-logo i {
+    color: #ff385c;
+    /* Airbnb iconic brand pink accent */
+    font-size: 16px;
+}
+
+/* 2. Social Media Icon Interaction Pack */
+.footer-social {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-social a {
+    color: var(--text-main);
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    transition: background-color 0.15s var(--transition-smooth), transform 0.15s var(--transition-smooth);
+}
+
+/* Elegant native background scale flash on cursor hover */
+.footer-social a:hover {
+    background-color: #f7f7f7;
+    transform: scale(1.06);
+}
+
+/* 3. Streamlined Copyright Element */
+.footer-bottom {
+    display: flex;
+    align-items: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+}
+
+.footer-bottom i {
+    font-size: 12px;
+}
+
+
+/* ==========================================================================
+   Responsive Architecture Breakpoint (Mobile Viewport Optimization)
+   ========================================================================== */
+
+@media (max-width: 743px) {
+    .footer {
+        padding: 24px;
+    }
+
+    /* Shift layout from horizontal row to balanced vertical column */
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    /* Enforces logical structure: Brand Logo -> Social Icons -> Legal baseline info */
+    .footer-logo {
+        order: 1;
+    }
+
+    .footer-social {
+        order: 2;
+    }
+
+    .footer-bottom {
+        order: 3;
+        width: 100%;
+        border-top: 1px solid #f7f7f7;
+        padding-top: 16px;
+        justify-content: center;
+    }
+}
+
+
+
+
+
+
+/* show ejs routes css */
+/* ==========================================================================
+   Wanderlust High-End Property Detail Engine
+   ========================================================================== */
+
+:root {
+    --text-main: #222222;
+    --text-muted: #717171;
+    --brand-accent: #ff385c;
+    --bg-surface: #ffffff;
+    --font-stack: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --transition-premium: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Master Container Layout with Fluid Margins */
+.show-container {
+    max-width: 1120px;
+    margin: 32px auto;
+    padding: 0 40px;
+    font-family: var(--font-stack);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 1. Hardware-Accelerated Cinematic Image Frame */
+.show-image-wrapper {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    /* Ultra-wide editorial aspect ratio */
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: #f7f7f7;
+    margin-bottom: 48px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+    /* Sub-pixel edge enhancement */
+}
+
+.show-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    transition: transform 0.6s var(--transition-premium);
+}
+
+/* Subtle parallax zoom effect when the page loads or settles */
+.show-image-wrapper:hover .show-image {
+    transform: scale(1.015);
+}
+
+/* 2. Asymmetric Dual-Column Grid Grid */
+.show-content-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) 380px;
+    /* Locked precise desktop checkout tracking width */
+    gap: 80px;
+    align-items: start;
+}
+
+/* Left Content Column */
+.show-main-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.show-title {
+    font-size: clamp(24px, 2.5vw, 32px);
+    /* Fluid typography scales elegantly */
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0 0 12px 0;
+    letter-spacing: -0.6px;
+    line-height: 1.15;
+}
+
+.show-location {
+    font-size: 16px;
+    color: var(--text-main);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin: 0 0 32px 0;
+}
+
+.show-divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 0 0 32px 0;
+    width: 100%;
+}
+
+.show-description {
+    font-size: 16px;
+    line-height: 1.625;
+    /* Highly readable golden-ratio line height */
+    color: var(--text-main);
+    margin: 0;
+    letter-spacing: -0.1px;
+}
+
+/* Right Content Column: Premium Sticky Floating Widget */
+.show-action-panel {
+    position: sticky;
+    top: 112px;
+    /* Smooth spacing layout below the premium navbar blur zone */
+    border: 1px solid #dddddd;
+    border-radius: 16px;
+    padding: 24px;
+    background-color: var(--bg-surface);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 6px 16px;
+    transition: box-shadow 0.3s var(--transition-premium);
+}
+
+.show-action-panel:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 24px;
+    /* Dynamic tracking elevation shadow */
+}
+
+.price-box {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.price-amount {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
+}
+
+.price-unit {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* 3. Action Components Group */
+.show-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.delete-form {
+    width: 100%;
+    margin: 0;
+}
+
+/* High-Impact Interactive CTA (Edit Button) */
+.edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 48px;
+    background-color: var(--brand-accent);
+    /* Airbnb signature brand tint */
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease;
+}
+
+.edit-btn:hover {
+    opacity: 0.95;
+}
+
+/* Micro-Interactive Guard Button (Delete Button) */
+.delete-btn {
+    width: 100%;
+    height: 48px;
+    background-color: transparent;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #b0b0b0;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition:
+        background-color 0.2s var(--transition-premium),
+        border-color 0.2s var(--transition-premium),
+        color 0.2s var(--transition-premium);
+}
+
+.delete-btn:hover {
+    border-color: #c13515;
+    /* Clean system destructive alert border */
+    background-color: #fff8f6;
+    /* Soft red danger fill */
+    color: #c13515;
+}
+
+/* ==========================================================================
+   Responsive Architecture Breakpoints
+   ========================================================================== */
+
+@media (max-width: 950px) {
+    .show-container {
+        padding: 0 24px;
+        margin: 16px auto;
+    }
+
+    .show-image-wrapper {
+        aspect-ratio: 16 / 9;
+        /* Tighter standard framing rules for tablet viewports */
+        margin-bottom: 32px;
+        border-radius: 12px;
+    }
+
+    /* Flattens columns smoothly into a singular stack flow */
+    .show-content-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .show-action-panel {
+        position: static;
+        /* Drops fixed sticking math engines for mobile fingers */
+        box-shadow: none;
+        border: none;
+        padding: 32px 0 0 0;
+        border-top: 1px solid #e0e0e0;
+        border-radius: 0;
+    }
+
+    .show-action-panel:hover {
+        box-shadow: none;
+    }
+
+    .show-buttons {
+        flex-direction: row;
+        /* Aligns buttons cleanly side-by-side on tablets */
+    }
+}
+
+@media (max-width: 550px) {
+    .show-image-wrapper {
+        aspect-ratio: 4 / 3;
+        /* Deeper mobile framing focus matrix */
+    }
+
+    .show-buttons {
+        flex-direction: column;
+        /* Re-stacks buttons vertically on tight smartphones */
+    }
+}
+
+
+
+
+
+
+/* ==========================================================================
+   Wanderlust Premium Form Configuration Engine (Edit Listing)
+   ========================================================================== */
+
+:root {
+    --text-main: #222222;
+    --text-muted: #717171;
+    --brand-accent: #ff385c;
+    --border-light: #b0b0b0;
+    --border-focus: #222222;
+    --bg-surface: #ffffff;
+    --font-stack: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --transition-smooth: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Master Page Containment Wrapper */
+.edit-page {
+    max-width: 640px;
+    /* Optimal reading and typing width for form layouts */
+    margin: 48px auto;
+    padding: 0 24px;
+    font-family: var(--font-stack);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Page Context Header Typography */
+.edit-page h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0 0 32px 0;
+    letter-spacing: -0.6px;
+}
+
+/* Flexbox Layout Stack Engine */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /* Structured visual whitespace mapping between element groups */
+}
+
+/* 1. Structural Form Input Fields Grouping */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Compact distance between label text and interactive target */
+    width: 100%;
+}
+
+/* Form Structural Labels */
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+    letter-spacing: -0.1px;
+}
+
+/* Interactive Raw Text Inputs & Textareas */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-main);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s var(--transition-smooth), box-shadow 0.2s var(--transition-smooth);
+}
+
+/* Refined Multi-Line Text Inputs */
+.form-group textarea {
+    resize: vertical;
+    /* Blocks messy horizontal browser expansion */
+    line-height: 1.5;
+    min-height: 120px;
+}
+
+/* 2. Micro-Interactive Dynamic Focus Matrix States */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 1px var(--border-focus);
+    /* Clean, crisp high-contrast double border line look */
+}
+
+/* Number inputs spin button removal for consistent alignment formatting */
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.form-group input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* 3. Primary CTA Save Interaction Action Element */
+.save-btn {
+    width: 100%;
+    height: 50px;
+    margin-top: 8px;
+    background-color: var(--brand-accent);
+    /* Signature high-intent callout color */
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.15s ease, transform 0.1s var(--transition-smooth);
+}
+
+/* Click Compression feedback interactions */
+.save-btn:hover {
+    opacity: 0.95;
+}
+
+.save-btn:active {
+    transform: scale(0.985);
+    /* Premium micro-bounce click gesture physics mapping */
+}
+
+
+/* ==========================================================================
+   Responsive Architecture Breakpoint (Mobile Viewport Calibration)
+   ========================================================================== */
+
+@media (max-width: 550px) {
+    .edit-page {
+        margin: 24px auto;
+        padding: 0 16px;
+    }
+
+    .edit-page h1 {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+
+    .edit-form {
+        gap: 20px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group textarea {
+        padding: 12px 14px;
+        font-size: 16px;
+        /* Safeguards iOS layout viewports from forced auto-zoom breaking scales */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Wanderlust Premium Form Architecture (Add New Listing)
+   ========================================================================== */
+
+:root {
+    --text-main: #222222;
+    --text-muted: #717171;
+    --brand-accent: #ff385c;
+    --border-light: #b0b0b0;
+    --border-focus: #222222;
+    --bg-surface: #ffffff;
+    --font-stack: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --transition-smooth: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Master Layout Framework Container */
+.new-page {
+    max-width: 640px;
+    /* Optimal comfortable column line-length for input actions */
+    margin: 48px auto;
+    padding: 0 24px;
+    font-family: var(--font-stack);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Page Section Context Title Header */
+.new-page h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0 0 32px 0;
+    letter-spacing: -0.6px;
+}
+
+/* Form Execution Column Stack Engine */
+.new-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Symmetrical spatial rhythm between raw inputs */
+}
+
+/* Base Inputs Configuration Styling */
+.new-form input[type="text"],
+.new-form input[type="number"],
+.new-form textarea {
+    width: 100%;
+    padding: 16px;
+    /* Roomy typing pad areas */
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-main);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+    transition:
+        border-color 0.2s var(--transition-smooth),
+        box-shadow 0.2s var(--transition-smooth);
+}
+
+/* Extended Multi-Line Descriptive Box */
+.new-form textarea {
+    min-height: 140px;
+    resize: vertical;
+    /* Blocks layout breakage caused by horizontal dragging */
+    line-height: 1.5;
+}
+
+/* Clean Placeholder Color Management */
+.new-form input::placeholder,
+.new-form textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.82;
+    font-weight: 400;
+}
+
+/* Hardware-Accelerated High-Contrast Interactive Focus States */
+.new-form input:focus,
+.new-form textarea:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 1px var(--border-focus);
+    /* Crisp double-line border illusion */
+}
+
+/* Number Spinner Removal Rules */
+.new-form input[type="number"]::-webkit-inner-spin-button,
+.new-form input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.new-form input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* High-Intent Primary Call-To-Action Element */
+.new-form button[type="submit"] {
+    width: 100%;
+    height: 50px;
+    margin-top: 12px;
+    background-color: var(--brand-accent);
+    /* Signature luxury pink */
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.15s ease, transform 0.1s var(--transition-smooth);
+}
+
+/* Micro-interaction Feedback States */
+.new-form button[type="submit"]:hover {
+    opacity: 0.95;
+}
+
+.new-form button[type="submit"]:active {
+    transform: scale(0.985);
+    /* Click physical compression feedback animation */
+}
+
+
+/* ==========================================================================
+   Responsive Adaptation Breakpoint (Mobile Optimization Matrix)
+   ========================================================================== */
+
+@media (max-width: 550px) {
+    .new-page {
+        margin: 24px auto;
+        padding: 0 16px;
+    }
+
+    .new-page h1 {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+
+    .new-form {
+        gap: 16px;
+    }
+
+    .new-form input[type="text"],
+    .new-form input[type="number"],
+    .new-form textarea {
+        padding: 14px;
+        font-size: 16px;
+        /* Fixes auto-zoom shift issues on iOS WebKit viewports */
+    }
+}
+
+
+
+/* ==========================================================================
+   Wanderlust Premium Form Architecture (Leave A Review Section)
+   ========================================================================== */
+
+.section-divider {
+    margin: 40px auto;
+    max-width: 640px;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Review Framework Container */
+.review-section {
+    max-width: 640px;
+    margin: 0 auto 48px auto;
+    padding: 0 24px;
+    font-family: var(--font-stack);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Component Header Title */
+.review-section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0 0 24px 0;
+    letter-spacing: -0.4px;
+}
+
+/* Form Structural Container */
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Input Fields Structuring Group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+/* Comment Input Area Config Styling */
+.review-form textarea {
+    width: 100%;
+    padding: 16px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-main);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+    transition:
+        border-color 0.2s var(--transition-smooth),
+        box-shadow 0.2s var(--transition-smooth);
+}
+
+.review-form textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 0.82;
+}
+
+.review-form textarea:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 1px var(--border-focus);
+}
+
+/* Rating Input Architecture UI */
+.rating-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.rating-range {
+    flex: 1;
+    accent-color: var(--brand-accent);
+    cursor: pointer;
+    height: 6px;
+    border-radius: 3px;
+}
+
+.rating-display {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-main);
+    min-width: 32px;
+}
+
+/* Form High-Intent Execution Element */
+.submit-review-btn {
+    width: 100%;
+    height: 48px;
+    margin-top: 8px;
+    background-color: var(--text-main);
+    /* Alternated to Dark Contrast style for sub-actions */
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease, transform 0.1s var(--transition-smooth);
+}
+
+.submit-review-btn:hover {
+    background-color: #000000;
+}
+
+.submit-review-btn:active {
+    transform: scale(0.985);
+}
+
+/* ==========================================================================
+   Responsive Adaptations (Mobile Optimization Matrix)
+   ========================================================================== */
+
+@media (max-width: 550px) {
+    .review-section {
+        margin-bottom: 32px;
+        padding: 0 16px;
+    }
+
+    .review-section h2 {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+
+    .review-form {
+        gap: 16px;
+    }
+
+    .review-form textarea {
+        padding: 14px;
+        font-size: 16px;
+        /* Protects WebKit layout viewport zooming scales */
+    }
+}
+
+/* ==========================================================================
+   Wanderlust Premium Overlays for Bootstrap Form Controls
+   ========================================================================== */
+
+/* Fixes line length constraints on detail page templates */
+.review-section {
+    max-width: 640px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Enhancing standard Bootstrap form control focusing behavior */
+.review-form .premium-textarea {
+    border-radius: 8px;
+    border-color: #b0b0b0;
+    padding: 14px;
+    font-size: 15px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.review-form .premium-textarea:focus {
+    color: #222222;
+    background-color: #fff;
+    border-color: #222222;
+    /* Matches crisp dark focus illusion */
+    outline: 0;
+    box-shadow: 0 0 0 1px #222222;
+}
+
+/* Customizing Bootstrap's .form-range to inherit Wanderlust colors */
+.review-form .custom-slider {
+    accent-color: #ff385c;
+    /* Fallback for modern standard styling */
+}
+
+.review-form .custom-slider::-webkit-slider-thumb {
+    background: #ff385c;
+    /* Wanderlust premium pink */
+}
+
+.review-form .custom-slider::-moz-range-thumb {
+    background: #ff385c;
+}
+
+.review-form .custom-slider:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.25);
+}
+
+/* Subtle physical interactive scaling on submission */
+.submit-review-btn {
+    border-radius: 8px;
+    transition: transform 0.1s cubic-bezier(0.2, 0, 0, 1) !important;
+}
+
+.submit-review-btn:active {
+    transform: scale(0.98);
+}
+
+/* Adaptive mobile viewport overrides for Safari iOS fields layout text constraints */
+@media (max-width: 550px) {
+    .review-form .premium-textarea {
+        font-size: 16px;
+        /* Protects iOS layout layout shifts */
+        padding: 12px;
+    }
+}
+
+/* ==========================================================================
+   Wanderlust Feed Review Display Custom Styling
+   ========================================================================== */
+
+.review-card {
+    border-radius: 12px;
+    transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+.review-comment-text {
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+
+
+/* ==========================================================================
+  for the footer to be fixed 
+   ========================================================================== */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+/* DO NOT make body flex */
+body {
+    min-height: 100vh;
+}
+
+/* ONLY control layout inside main wrapper */
+.content {
+    min-height: calc(100vh - 140px);
+    /* adjust if navbar/footer height changes */
+}
+
+/* FOOTER ONLY styling */
+.footer {
+    margin-top: auto;
+    padding: 22px 0;
+    font-size: 14px;
+}
+
+
+.starability-slot {
+    display: inline-block;
+    direction: rtl;
+    border: none;
+}
+
+.starability-slot input {
+    display: none;
+}
+
+.starability-slot label {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.starability-slot label::before {
+    content: "★";
+}
+
+.starability-slot label:hover,
+.starability-slot label:hover~label {
+    color: #ffc107;
+}
+
+.starability-slot input:checked~label {
+    color: #ffc107;
+}
+
+.review-stars {
+    font-size: 1.1rem;
+}
+
+.filled-star {
+    color: #ffc107;
+}
+
+.empty-star {
+    color: #d6d6d6;
+}
+
+.starability-slot {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    gap: 5px;
+}
+
+.starability-slot input {
+    display: none;
+}
+
+.starability-slot label {
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+}
+
+.starability-slot label::before {
+    content: "★";
+}
+
+.starability-slot input:checked~label,
+.starability-slot label:hover,
+.starability-slot label:hover~label {
+    color: #ffc107;
+}
+
+.review-stars {
+    font-size: 1.1rem;
+}
+
+.filled-star {
+    color: #ffc107;
+}
+
+.empty-star {
+    color: #ccc;
+}
+
+/* ================= LAYOUT ================= */
+
+.show-content-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.show-main-details {
+    flex: 2;
+}
+
+.show-action-panel {
+    flex: 1;
+}
+
+/* ================= IMAGE ================= */
+
+.show-image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 18px;
+}
+
+/* ================= PRICE CARD ================= */
+
+.price-card {
+    position: sticky;
+    top: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.price-amount {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn-primary-action {
+    display: block;
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.btn-danger-action {
+    width: 100%;
+    margin-top: 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* ================= REVIEW CARD ================= */
+
+.review-card {
+    background: white;
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+.review-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ================= STARS ================= */
+
+.filled-star {
+    color: #f5b301;
+}
+
+.empty-star {
+    color: #ddd;
+}
+
+/* Section spacing */
+.map-section-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    /* center content */
+}
+
+/* Title */
+.map-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #222;
+    text-align: center;
+}
+
+/* Subtitle */
+.map-subtitle {
+    font-size: 14px;
+    color: #717171;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Outer card */
+.map-card {
+    position: relative;
+    /* IMPORTANT for ::before */
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    /* cleaner border */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease-in-out;
+
+    width: 80%;
+    max-width: 900px;
+    /* keeps it decent on large screens */
+    margin: 0 auto;
+    /* center fallback */
+}
+
+/* Hover effect */
+.map-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Map itself */
+#map {
+    height: 420px;
+    width: 80%;
+    /* take full card width */
+    border-radius: 16px;
+}
+
+/* subtle overlay */
+.map-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.03), transparent 70%);
+}
+
+/* ================= MAP SECTION ================= */
+
+.map-section-container {
+    margin-top: 40px;
+    padding: 40px 20px;
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Title */
+.map-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+/* Subtitle (location text) */
+.map-subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 20px;
+}
+
+/* Map card wrapper */
+.map-card {
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+
+/* Leaflet / OSM map */
+#map {
+    height: 420px;
+    width: 100%;
+    border-radius: 16px;
+}
+
+/* Remove default leaflet border glitches */
+.leaflet-container {
+    font-family: inherit;
+    border-radius: 16px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    .map-section-container {
+        padding: 25px 15px;
+        margin-top: 30px;
+    }
+
+    .map-title {
+        font-size: 18px;
+    }
+
+    #map {
+        height: 300px;
+    }
+
+    .map-card {
+        border-radius: 12px;
+    }
+}
+
+/* ================= for the icons ================= */
+
+.category-bar {
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    padding: 15px 10px;
+    white-space: nowrap;
+}
+
+.category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #555;
+    font-size: 12px;
+    min-width: 70px;
+    transition: 0.2s;
+}
+
+.category-btn i {
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    background: white;
+}
+
+.category-btn:hover i {
+    background: black;
+    color: white;
+}
+
+.category-btn:hover span {
+    color: black;
+}
+
+.category-bar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+
+    padding: 15px 20px;
+    overflow-x: auto;
+
+    background: #fff;
+    border-bottom: 1px solid #eaeaea;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.top-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* SEARCH */
+.search-form {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.search-input {
+    width: 50%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+}
+
+.search-btn {
+    margin-left: 10px;
+    border: none;
+    background: black;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+}
+
+/* CATEGORY */
+.category-bar {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+
+
+
+.category-btn {
+    display: flex;
+    justify-content: space-evenly;
+    /* equal spacing */
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    overflow-x: auto;
+    /* optional for smaller screens */
+}
+
+.category-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+/*search bar of the navbar page*/
+
+.search-form {
+    width: 45%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-input {
+    flex: 1;
+    height: 45px;
+    border-radius: 25px;
+    border: 1px solid #ddd;
+    padding: 0 18px;
+    outline: none;
+}
+
+.search-btn {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: #ff385c;
+    color: white;
+}
+
+/* ================= CATEGORY PAGE ================= */
+
+.category-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 1.5rem;
+}
+
+.category-card-location {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.category-card-price {
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.category-card-price .price {
+    font-weight: 700;
+    color: #000;
+}
+
+.category-card-price .unit {
+    color: #666;
+    font-weight: 400;
+}
+
+
+/* ================= NAVBAR RESPONSIVE ================= */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+}
+
+/* links container */
+.navbar-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* links styling */
+.navbar-links a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+/* search responsive */
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+/* ================= MOBILE VIEW ================= */
+@media (max-width: 768px) {
+
+    /* hide text, keep icons */
+    .link-text {
+        display: none;
+    }
+
+    .logo-text {
+        display: none;
+    }
+
+    .navbar-links a {
+        font-size: 18px;
+        gap: 0;
+    }
+
+    .search-input {
+        width: 120px;
+    }
+}
+
+/* extra small screens */
+@media (max-width: 480px) {
+
+    .search-form {
+        display: none;
+        /* optional: hide search completely */
+    }
+}

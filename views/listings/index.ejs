@@ -1,0 +1,108 @@
+<% layout("/layouts/boilerplate") %>
+
+    <!-- ================= TOP BAR (SEARCH + CATEGORY) ================= -->
+    <div class="top-bar">
+
+
+        <!-- CATEGORY BAR -->
+        <div class="category-bar">
+
+            <a href="/listings" class="category-btn">
+                <i class="bi bi-grid"></i>
+                <span>All</span>
+            </a>
+
+            <a href="/listings/category/trending" class="category-btn">
+                <i class="bi bi-fire"></i>
+                <span>Trending</span>
+            </a>
+
+            <a href="/listings/category/room" class="category-btn">
+                <i class="bi bi-house-door"></i>
+                <span>Room</span>
+            </a>
+
+            <a href="/listings/category/iconic_city" class="category-btn">
+                <i class="bi bi-buildings"></i>
+                <span>City</span>
+            </a>
+
+            <a href="/listings/category/mountain" class="category-btn">
+                <i class="bi bi-tree"></i>
+                <span>Mountain</span>
+            </a>
+
+            <a href="/listings/category/castle" class="category-btn">
+                <i class="bi bi-shield-lock"></i>
+                <span>Castle</span>
+            </a>
+
+            <a href="/listings/category/amazing_pool" class="category-btn">
+                <i class="bi bi-water"></i>
+                <span>Pool</span>
+            </a>
+
+            <a href="/listings/category/camping" class="category-btn">
+                <i class="bi bi-tree-fill"></i>
+                <span>Camping</span>
+            </a>
+
+            <a href="/listings/category/farm" class="category-btn">
+                <i class="bi bi-flower1"></i>
+                <span>Farm</span>
+            </a>
+
+            <a href="/listings/category/arctic" class="category-btn">
+                <i class="bi bi-snow"></i>
+                <span>Arctic</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ================= LISTINGS GRID ================= -->
+    <div class="listings-grid">
+
+        <% for(let listing of allListings) { %>
+
+            <a href="/listings/<%= listing._id %>" class="listing-card-link">
+
+                <article class="listing-card">
+
+                    <div class="listing-image-wrapper">
+
+                        <% const imageUrl=listing.image?.url
+                            || "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" ; %>
+
+                            <img src="<%= imageUrl %>" alt="<%= listing.title %>" class="listing-image" loading="lazy">
+
+                    </div>
+
+                    <div class="listing-info">
+
+                        <h3 class="listing-location">
+                            <%= listing.location %>, <%= listing.country %>
+                        </h3>
+
+                        <p class="listing-price-container">
+
+                            <span class="listing-price">
+                                ₹<%= listing.price.toLocaleString("en-IN") %>
+                            </span>
+
+                            <span class="listing-unit">
+                                / night
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </a>
+
+            <% } %>
+
+    </div>

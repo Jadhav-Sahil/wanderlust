@@ -1,0 +1,51 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="container mt-4">
+
+        <h2 class="category-title">
+            <%= category.replace("_", " " ) %> Listings
+        </h2>
+
+        <div class="listings-grid">
+
+            <% for(let listing of allListings) { %>
+
+                <a href="/listings/<%= listing._id %>" class="listing-card-link">
+
+                    <article class="listing-card">
+
+                        <div class="listing-image-wrapper">
+
+                            <img src="<%= listing.image?.url %>" alt="<%= listing.title %>" class="listing-image">
+
+                        </div>
+
+                        <div class="listing-info">
+
+                            <h3 class="category-card-location">
+                                <%= listing.location %>, <%= listing.country %>
+                            </h3>
+
+                            <p class="category-card-price">
+
+                                <span class="price">
+                                    ₹<%= listing.price.toLocaleString("en-IN") %>
+                                </span>
+
+                                <span class="unit">
+                                    / night
+                                </span>
+
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </a>
+
+                <% } %>
+
+        </div>
+
+    </div>
